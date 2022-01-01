@@ -48,14 +48,7 @@ exports.login = async (req, res) => {
       });
       res.json({
         token,
-        user: {
-          _id: user._id,
-          email: user.email,
-          name: user.name,
-          role: user.role,
-          createdAt: user.createdAt,
-          updatedAt: user.updatedAt,
-        },
+        user,
       });
     });
   } catch (err) {
@@ -63,35 +56,6 @@ exports.login = async (req, res) => {
     res.status(400).send("SignIn failed");
   }
 };
-
-// exports.allRegisterUser = async (req, res) => {
-//   try {
-//     let all = await User.find({}).exec();
-//     res.json(all);
-//     console.log(all);
-//   } catch (err) {
-//     res.status(500).send(err.message);
-//   }
-// };
-
-// exports.allRegisterUser = async (req, res) => {
-//   try {
-//     let { page, size } = req.query;
-//     if (!page) {
-//       page = 1;
-//     }
-//     if (!size) {
-//       size = 10;
-//     }
-//     const limit = parseInt(size);
-//     const skip = (page - 1) * size;
-//     const all = await User.find({}).limit(limit).skip(skip).exec();
-//     res.send({ page, size, data: all  });
-//     console.log(all);
-//   } catch (err) {
-//     res.status(500).send(err.message);
-//   }
-// };
 
 exports.allRegisterUser = async (req, res) => {
   try {
